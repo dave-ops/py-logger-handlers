@@ -1,0 +1,59 @@
+{
+    "logging": {
+      "version": 1,
+      "disable_existing_loggers": true,
+      "formatters": {
+        "brief": {
+          "class": "logging.Formatter",
+          "datefmt": "%I:%M:%S",
+          "format": "%(levelname)-8s; %(module)-25s; %(message)s"
+        },
+        "single-line": {
+          "class": "logging.Formatter",
+          "datefmt": "%I:%M:%S",
+          "format": "%(levelname)-8s; %(asctime)s; %(name)-15s; %(module)s:%(funcName)s;%(lineno)d: %(message)s"
+        },
+        "multi-process": {
+          "class": "logging.Formatter",
+          "datefmt": "%I:%M:%S",
+          "format": "%(levelname)-8s; [%(process)d]; %(name)-15s; %(module)s:%(funcName)s;%(lineno)d: %(message)s"
+        },
+        "multi-thread": {
+          "class": "logging.Formatter",
+          "datefmt": "%I:%M:%S",
+          "format": "%(levelname)-8s; %(threadName)s; %(name)-15s; %(module)s:%(funcName)s;%(lineno)d: %(message)s"
+        },
+        "verbose": {
+          "class": "logging.Formatter",
+          "datefmt": "%I:%M:%S",
+          "format": "%(levelname)-8s; [%(process)d]; %(threadName)s; %(name)-15s; %(module)s:%(funcName)s;%(lineno)d: %(message)s"
+        },
+        "multiline": {
+          "class": "logging.Formatter",
+          "format": "Level: %(levelname)s\nTime: %(asctime)s\nProcess: %(process)d\nThread: %(threadName)s\nLogger: %(name)s\nPath: %(module)s:%(lineno)d\nFunction :%(funcName)s\nMessage: %(message)s\n"
+        }
+      },
+      "handlers": {
+        "console": {
+          "level": "DEBUG",
+          "class": "logging.StreamHandler",
+          "formatter": "brief",
+          "stream": "ext://sys.stdout"
+        },
+        "sql": {
+          "level": "DEBUG",
+          "class": "logger_handlers.handlers.sql_handler.SQLHandler",
+          "application_name": "test",
+          "db_name": "YourSQLDatabaseName",
+          "schema_name": "dbo",
+          "sql_conn_str": "Driver={SQL Server};Server=<host>\\<instance>,<port>;Uid=<uid>;Pwd=<pwd>;Connection Timeout=30;Trusted_Connection=no;MultipleActiveResultSets=True"
+        }
+      },
+      "loggers": {},
+      "root": {
+        "handlers": ["console", "sql"],
+        "level": "DEBUG"
+      }
+    }
+  }
+  
